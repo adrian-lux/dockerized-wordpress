@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    container_name: wpcontanier
+    image: wordpress:php7.2
+    depends_on:
+      - wordpressdb
+    links:
+      - wordpressdb:mysql
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_PASSWORD: zaqMKO0123
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_NAME: wordpress_db
+    volumes:
+      - ./html:/var/www/html
+
+  wordpressdb:
+    image: mariadb:10.3.10
+    restart: always
+    container_name: wordpressdb
+    environment:
+      MYSQL_ROOT_PASSWORD: zaqMKO0123
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: zaqMKO0123 
+      MYSQL_DATABASE: wordpress_db
+    volumes:
+      - ./database:/var/lib/mysql
+    
