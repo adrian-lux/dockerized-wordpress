@@ -37,9 +37,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 ```
 ## Install git and clone wordpress repo
 ```
-yum install git
+sudo yum install git
 
-git clone https://gitlab.z-hosts.com/adrian.lux/docker-wordpress
+git clone https://gitlab.z-hosts.com/adrian.lux/docker-wordpress.git
 ```
 ## Set up and start wordpress
 
