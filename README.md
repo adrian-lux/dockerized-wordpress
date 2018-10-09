@@ -45,5 +45,6 @@ git clone https://gitlab.z-hosts.com/adrian.lux/docker-wordpress.git
 
 Edit username and passwd in docker-compose.yml
 ```
+sudo usermod -aG docker $(whoami)
 docker-compose up -d
 ```
