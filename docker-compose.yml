@@ -29,5 +29,19 @@ services:
       MYSQL_PASSWORD: zaqMKO0123 
       MYSQL_DATABASE: wordpress_db
     volumes:
-      - ./database:/var/lib/mysql
-    
+      - database:/var/lib/mysql
+      
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: wordpressdb
+      PMA_USER: wpuser
+      PMA_PASSWORD: zaqMKO0123
+    restart: always
+    links:
+      - wordpressdb:mysql
+    ports:
+      - '9000:80'
+volumes:
+  database:
