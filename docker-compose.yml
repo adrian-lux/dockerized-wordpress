@@ -20,7 +20,7 @@ services:
       - ./html:/var/www/html
 
   wordpressdb:
-    image: mariadb:10.3.10
+    image: mariadb:5.5.62
     restart: always
     container_name: wordpressdb
     environment:
@@ -29,14 +29,15 @@ services:
       MYSQL_PASSWORD: zaqMKO0123 
       MYSQL_DATABASE: wordpress_db
     volumes:
+      - ./sql:/docker-entrypoint-initdb.d
       - database:/var/lib/mysql
       
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
-      PMA_ARBITRARY: 1
+      PMA_ARBITRARY: 0
       PMA_HOST: wordpressdb
-      PMA_USER: wpuser
+      PMA_USER: root
       PMA_PASSWORD: zaqMKO0123
     restart: always
     links:
