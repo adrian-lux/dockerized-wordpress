@@ -1,0 +1,48 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    container_name: wpcontanier
+    image: wordpress:php7.2
+    depends_on:
+      - wordpressdb
+    links:
+      - wordpressdb:mysql
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_PASSWORD: zaqMKO0123
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_NAME: wordpress_db
+    volumes:
+      - ./html:/var/www/html
+
+  wordpressdb:
+    image: mariadb:5.5.62
+    restart: always
+    container_name: wordpressdb
+    environment:
+      MYSQL_ROOT_PASSWORD: zaqMKO0123
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: zaqMKO0123 
+      MYSQL_DATABASE: wordpress_db
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - database:/var/lib/mysql
+      
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_ARBITRARY: 0
+      PMA_HOST: wordpressdb
+      PMA_USER: root
+      PMA_PASSWORD: zaqMKO0123
+    restart: always
+    links:
+      - wordpressdb:mysql
+    ports:
+      - '9000:80'
+volumes:
+  database:
