@@ -1,3 +1,4 @@
+(Also tested for docker toolbox on windows (if on windows skyp installation and jump directly to git clone))
 # Install wordpress with docker on centos 7
 
 ## Set up repositories
