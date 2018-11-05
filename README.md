@@ -52,3 +52,5 @@ In between restart docker daemon
 ```
 docker-compose up -d
 ```
+
+If you want to be able to work with multiple people on one project you might want to consider to set up a shared db between all users or use db dumps from phpmyadmin to put into the ./sql directory when you do `docker-compose` up to sync between multiple db's (file in that directory have to have '.sql' extension to be automatically imported into db). 
